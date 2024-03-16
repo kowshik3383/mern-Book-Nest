@@ -17,7 +17,7 @@ export default function SignUp() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch('https://mern-hotel-website-ok9n.vercel.app/signup', {
+      const res = await fetch('https://mern-book-nest.vercel.app/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
