@@ -5,6 +5,7 @@ import userRoute from './routes/user.route.js';
 const app = express();
 const uri = 'mongodb://localhost:27017/mydata';
 const port = 5000;
+import cors from 'cors';
 
 // Connect to MongoDB
 mongoose.connect(uri)
@@ -13,6 +14,7 @@ mongoose.connect(uri)
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(cors());
 
 // Route for handling requests related to users
 app.use('/api/user', userRoute);
