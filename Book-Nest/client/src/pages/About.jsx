@@ -61,6 +61,7 @@ const About = () => {
               alt="/"
               className="h-2/4 rounded-lg"
             />
+            <h1>HELLO KOWSHIK</h1>
           </div>
         </div>
       )}
