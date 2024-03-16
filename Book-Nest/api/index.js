@@ -9,38 +9,30 @@ import userRoute from './routes/user.route.js';
 const app = express();
 const uri = 'mongodb://localhost:27017/mydata';
 const port = 5000;
+
+// Set CORS headers
+app.use(cors());
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://mern-book-nest-oqmd.vercel.app');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
   next();
 });
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
 // Connect to MongoDB
 mongoose.connect(uri)
   .then(() => console.log('Connected to MongoDB successfully'))
   .catch((err) => console.error('Error connecting to MongoDB:', err));
 
-// Set CORS headers
-app.use(cors());
-app.use((req, res, next) => {
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader(
-        "Access-Control-Allow-Methods",
-        "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-      );
-      res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-      if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-      }
-      next();
-    });
-
-// Middleware to parse JSON bodies
-app.use(express.json());
-
-// Route for handling requests related to users
-app.use('https://mern-book-nest.vercel.app/user', userRoute);
-app.use('https://mern-book-nest.vercel.app/auth', authRoute);
+// Routes for handling requests related to users and authentication
+app.use('/user', userRoute);
+app.use('/auth', authRoute);
 
 // Error handler for invalid routes
 app.use((req, res, next) => {
@@ -50,7 +42,7 @@ app.use((req, res, next) => {
 });
 
 // Global error handler
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     error: {
       message: err.message
