@@ -6,7 +6,7 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{
-        target:'http://localhost:5000',
+        target:'https://mern-book-nest.vercel.app/',
         secure:false
       },
     },
