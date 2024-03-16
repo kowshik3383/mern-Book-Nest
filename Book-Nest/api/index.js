@@ -9,7 +9,12 @@ import userRoute from './routes/user.route.js';
 const app = express();
 const uri = 'mongodb://localhost:27017/mydata';
 const port = 5000;
-
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://mern-book-nest-oqmd.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 // Connect to MongoDB
 mongoose.connect(uri)
   .then(() => console.log('Connected to MongoDB successfully'))
