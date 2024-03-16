@@ -20,6 +20,7 @@ export default function SignIn() {
     setError(null);
     try {
       const res = await fetch('https://mern-book-nest.vercel.app/signin', {
+          mode: 'no-cors',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
