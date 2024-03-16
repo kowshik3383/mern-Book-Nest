@@ -19,7 +19,7 @@ export default function SignIn() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('https://mern-hotel-website-ok9n.vercel.app/signin', {
+      const res = await fetch('https://mern-book-nest.vercel.app/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
