@@ -34,8 +34,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // Route for handling requests related to users
-app.use('/api/user', userRoute);
-app.use('/api/auth', authRoute);
+app.use('https://mern-book-nest.vercel.app/user', userRoute);
+app.use('https://mern-book-nest.vercel.app/auth', authRoute);
 
 // Error handler for invalid routes
 app.use((req, res, next) => {
