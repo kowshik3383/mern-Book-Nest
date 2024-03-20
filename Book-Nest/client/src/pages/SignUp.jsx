@@ -17,7 +17,7 @@ export default function SignUp() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch('https://mern-book-nest.vercel.app/signup', {
+      const res = await fetch('https://server-4-muw9.onrender.com/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
